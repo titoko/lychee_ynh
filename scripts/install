@@ -20,6 +20,7 @@ domain=$YNH_APP_ARG_DOMAIN
 path=$YNH_APP_ARG_PATH
 admin=$YNH_APP_ARG_ADMIN
 password=$YNH_APP_ARG_PASSWORD
+password=$(echo -n $password | md5sum | cut -d ' ' -f 1)
 
 # Source YunoHost helpers
 source /usr/share/yunohost/helpers

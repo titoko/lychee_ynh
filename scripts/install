@@ -76,7 +76,7 @@ sudo chown -R www-data: $src_path/{data,plugins}
 sudo chown -R www-data: $data_path/
 sudo find $src_path -type f -exec chmod 644 {} +
 sudo find $src_path -type d -exec chmod 755 {} +
-sudo find $data_path -type d -exec chmod 755 {} +
+sudo find $data_path -type d -exec chmod 777 {} +
 
 # Configure nginx settings
 folder_path=${path%/}

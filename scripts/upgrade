@@ -29,7 +29,7 @@ source /usr/share/yunohost/helpers
 
 # Create path for copying
 src_path=/var/www/$app
-sudo mkdir -p $src_path
+#sudo mkdir -p $src_path
 
 # To be implemented
 ynh_die "Upgrade operation not implemented yet"

@@ -48,7 +48,7 @@ db_user=lychee
 
 # Initialize database and store mysql password for upgrade
 sudo yunohost app initdb $db_user -p $db_pwd -s $(readlink -e ../conf/db.sql) 
-sudo yunohost app setting lychee mysqlpwd -v $db_pwd
+ynh_app_setting_set "$app" mysqlpwd -v $db_pwd
 
 # Create path for copying
 src_path=/var/www/$app

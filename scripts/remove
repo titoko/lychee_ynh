@@ -1,16 +1,26 @@
 #!/bin/bash
 
-db_user=lychee
-db_name=lychee
+# Exit and treat unset variables as an error
+set -u
+
+# Source YunoHost helpers
+source /usr/share/yunohost/helpers
+
+app=$YNH_APP_INSTANCE_NAME
+domain=$(ynh_app_setting_get $app domain)
+
+db_user=$app
+db_name=$app
 root_pwd=$(sudo cat /etc/yunohost/mysql)
-domain=$(sudo yunohost app setting lychee domain)
 
 mysql -u root -p$root_pwd -e "DROP DATABASE $db_name ; DROP USER $db_user@localhost ;"
-sudo rm -rf /var/www/lychee
-sudo rm -f /etc/nginx/conf.d/$domain.d/lychee.conf
-sudo rm -f /etc/php5/fpm/pool.d/lychee.conf
-sudo rm -f /etc/php5/fpm/conf.d/20-lychee.ini
-sudo rm -rf /home/yunohost.app/lychee
+sudo rm -rf /var/www/$app
+
+# Remove nginx conf and reload nginx service
+sudo rm -f /etc/nginx/conf.d/$domain.d/$app.conf
+sudo rm -f /etc/php5/fpm/pool.d/$app.conf
+sudo rm -f /etc/php5/fpm/conf.d/20-$app.ini
+sudo rm -rf /home/yunohost.app/$app
 
 sudo service php5-fpm restart
 sudo service nginx reload

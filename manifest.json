@@ -38,9 +38,11 @@
         },
         {
             "name": "admin_pwd",
+            "type": "password",
             "ask": {
                 "en": "Choose password for admin user"
-            }
+            },
+            "example": "My super password!"
         }
         ]
     }
